@@ -1,27 +1,43 @@
 # Python cache
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
 
 # Virtual environments
 venv/
+env/
 .env/
 hailo_env/
 
-# Model files
+# Hailo and model files
 *.hef
 *.pt
 *.onnx
 *.engine
+*.har
 
 # Logs
 *.log
+logs/
+
+# Generated outputs
+outputs/
+
+# Local videos
+videos/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
 
 # Temporary files
 *.tmp
 *.swp
+*.bak
+
+# IDE and operating system
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
-
-# Local outputs
-outputs/
