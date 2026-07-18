@@ -140,15 +140,13 @@ The dataset was cleaned, merged, and split into training, validation, and test s
 
 ### Traffic Sign Detection
 ![](docs/screenshots/image1.jpeg)
+![](docs/screenshots/image4.jpeg)
 
 ### Traffic Light Detection
 ![](docs/screenshots/image2.jpeg)
 
-### YouTube Live Detection
-![](docs/screenshots/image3.jpeg)
-
 ### Crosswalk Detection
-![](docs/screenshots/image4.jpeg)
+![](docs/screenshots/image3.jpeg)
 
 ## Disclaimer
 
