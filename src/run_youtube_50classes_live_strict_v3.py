@@ -660,7 +660,7 @@ def main():
     review_buffer = deque(maxlen=buffer_size)
     should_exit = False
 
-    screenshots_dir = Path("review_screenshots")
+    screenshots_dir = Path(__file__).resolve().parent.parent / "docs" / "review_screenshots"
     screenshots_dir.mkdir(
         parents=True,
         exist_ok=True,
