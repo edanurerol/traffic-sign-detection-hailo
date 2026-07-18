@@ -136,6 +136,20 @@ The dataset was cleaned, merged, and split into training, validation, and test s
 * Create a graphical user interface
 * Add performance and accuracy benchmarks
 
+## 📸 Demo
+
+### Traffic Sign Detection
+![](docs/screenshots/image1.jpeg)
+
+### Traffic Light Detection
+![](docs/screenshots/image2.jpeg)
+
+### YouTube Live Detection
+![](docs/screenshots/image3.jpeg)
+
+### Crosswalk Detection
+![](docs/screenshots/image4.jpeg)
+
 ## Disclaimer
 
 This project is under development and should not be used as the sole decision-making system in a real vehicle or safety-critical environment.
