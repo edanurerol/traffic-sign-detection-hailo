@@ -1,5 +1,8 @@
 # Turkish Traffic Detection with YOLO and Hailo
-
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![YOLO](https://img.shields.io/badge/YOLO-v11-green)
+![Hailo](https://img.shields.io/badge/Hailo-8L-orange)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 Real-time traffic sign, traffic light, and road-object detection system developed for Raspberry Pi using YOLO and a Hailo AI accelerator.
 
 ## Project Overview
