@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/Gif1-ezgif.com-video-to-gif-converter.gif" alt="Traffic Detection Demo" width="900">
+</p>
+
+<br>
+
 # Turkish Traffic Detection with YOLO and Hailo
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![YOLO](https://img.shields.io/badge/YOLO-v11-green)
