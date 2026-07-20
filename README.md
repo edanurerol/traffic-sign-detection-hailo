@@ -19,6 +19,13 @@
 
 ---
 
+
+<p align="center">
+  <img src="assets/demogif.gif">
+</p>
+
+
+
 # 📌 Overview
 
 This project implements a **real-time traffic perception system** on **Raspberry Pi 5** using the **Hailo-8L AI Accelerator**. A YOLO-based object detection model is trained, optimized, compiled into **HEF** format, and deployed for high-performance edge inference.
