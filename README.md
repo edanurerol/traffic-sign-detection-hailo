@@ -71,7 +71,7 @@ The system is designed to detect Turkish traffic signs, traffic lights, pedestri
 * `class_names.txt`
   Contains the names of the 50 detectable classes.
 
-## Model File
+## Model Files
 
 The compiled Hailo model is not included in this repository because model files are excluded from Git tracking.
 
