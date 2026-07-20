@@ -1,156 +1,318 @@
 # Turkish Traffic Detection with YOLO and Hailo
+
+<p align="center">
+  <img src="docs/screenshots/image1.jpeg" width="900">
+</p>
+
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![YOLO](https://img.shields.io/badge/YOLO-v11-green)
 ![Hailo](https://img.shields.io/badge/Hailo-8L-orange)
+![Platform](https://img.shields.io/badge/Raspberry%20Pi-Linux-red)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
-Real-time traffic sign, traffic light, and road-object detection system developed for Raspberry Pi using YOLO and a Hailo AI accelerator.
 
-## Project Overview
+Real-time Turkish traffic sign, traffic light, and road-object detection system running on **Raspberry Pi** using **YOLO11** accelerated with a **Hailo-8L AI Accelerator**.
 
-This project performs real-time object detection on YouTube videos and video streams. The trained YOLO model was converted to the Hailo HEF format and optimized for inference on a Raspberry Pi with a Hailo AI accelerator.
+---
 
-The system is designed to detect Turkish traffic signs, traffic lights, pedestrian crossings, and other traffic-related objects.
+# Table of Contents
 
-## Features
+* Project Overview
+* Features
+* Hardware
+* Technologies
+* Installation
+* Project Structure
+* Model Information
+* Running the Project
+* Performance
+* Supported Classes
+* Dataset and Training
+* Future Improvements
+* Demo
+* License
+* Author
+
+---
+
+# Project Overview
+
+This project performs real-time object detection on YouTube videos and live streams using a Raspberry Pi and a Hailo AI accelerator.
+
+A trained YOLO11 model was converted into the Hailo HEF format and optimized for hardware acceleration. The system detects Turkish traffic signs, traffic lights, pedestrian crossings, and other road-related objects in real time.
+
+---
+
+# Features
 
 * Real-time inference with Hailo acceleration
-* YouTube video stream support
+* Optimized HEF model for Hailo-8L
+* YouTube video and live stream support
 * 50 traffic-related object classes
-* Traffic sign detection
-* Red, yellow, and green traffic light detection
+* Turkish traffic sign detection
+* Traffic light detection (Red / Yellow / Green)
 * Pedestrian crossing detection
 * Confidence threshold filtering
-* Non-Maximum Suppression
+* Non-Maximum Suppression (NMS)
 * Detection screenshots for manual review
-* Configurable post-processing
+* Configurable post-processing pipeline
 
-## Hardware
+---
+
+# Hardware
 
 * Raspberry Pi
-* Hailo AI accelerator
+* Hailo-8 / Hailo-8L AI Accelerator
 * HailoRT
-* Linux operating system
+* Linux Operating System
 
-## Technologies
+---
+
+# Technologies
 
 * Python
-* YOLO
+* YOLO11
 * HailoRT
 * OpenCV
 * NumPy
 * FFmpeg
 * yt-dlp
 
-## Project Files
+---
 
-```text
-.
-├── README.md
-├── class_names.txt
-├── config_50classes_normalized_logits.py
-├── hailo_inference.py
-├── postprocess_50classes_normalized_logits.py
-├── run_youtube_50classes_live_strict_v3.py
-└── review_screenshots/
-```
+# Installation
 
-### Main Files
-
-* `run_youtube_50classes_live_strict_v3.py`
-  Main application used for YouTube stream processing and real-time detection.
-
-* `hailo_inference.py`
-  Handles communication with the Hailo device and performs model inference.
-
-* `postprocess_50classes_normalized_logits.py`
-  Decodes YOLO model outputs, applies confidence filtering, and performs Non-Maximum Suppression.
-
-* `config_50classes_normalized_logits.py`
-  Contains model input, output, and post-processing configuration.
-
-* `class_names.txt`
-  Contains the names of the 50 detectable classes.
-
-## Model Files
-
-The compiled Hailo model is not included in this repository because model files are excluded from Git tracking.
-
-Required model filename:
-
-```text
-traffic_yolo11n_50classes_6heads_normalized_logits.hef
-```
-
-Place the HEF file in the project directory before running the application.
-
-## Running the Project
-
-Enter the project directory:
+Clone the repository:
 
 ```bash
-cd /home/pi/hailo_traffic/final_backup
+git clone https://github.com/edanurerol/traffic-sign-detection-hailo.git
+cd traffic-sign-detection-hailo
 ```
 
-Activate the Python environment if required:
+Activate your Python environment:
 
 ```bash
 source ~/hailo_env/bin/activate
 ```
 
-Run the main application:
+Install required Python packages:
 
 ```bash
-python3 run_youtube_50classes_live_strict_v3.py
+pip install opencv-python numpy yt-dlp
 ```
 
-Enter a YouTube video or stream URL when requested.
+Make sure the following software is already installed:
 
-## Current Results
+* HailoRT
+* FFmpeg
+* yt-dlp
 
-The system successfully performs real-time inference using the Hailo accelerator.
+Verify that the Hailo device is detected:
 
-Traffic lights are generally detected reliably. Traffic sign detection performance varies depending on:
+```bash
+hailortcli scan
+```
 
+---
+
+# Project Structure
+
+```text
+.
+├── README.md
+├── docs/
+│   └── screenshots/
+│       ├── image1.jpeg
+│       ├── image2.jpeg
+│       ├── image3.jpeg
+│       └── image4.jpeg
+│
+├── models/
+│   ├── class_names.txt
+│   └── traffic_yolo11n_50classes_6heads_normalized_logits.hef
+│
+└── src/
+    ├── config_50classes_normalized_logits.py
+    ├── hailo_inference.py
+    ├── postprocess_50classes_normalized_logits.py
+    └── run_youtube_50classes_live_strict_v3.py
+```
+
+---
+
+# Main Files
+
+### `run_youtube_50classes_live_strict_v3.py`
+
+Main application for YouTube stream processing and real-time inference.
+
+### `hailo_inference.py`
+
+Communicates with the Hailo accelerator and performs model inference.
+
+### `postprocess_50classes_normalized_logits.py`
+
+Processes YOLO outputs, applies confidence filtering, and performs Non-Maximum Suppression.
+
+### `config_50classes_normalized_logits.py`
+
+Contains model configuration, input/output information, and post-processing settings.
+
+### `class_names.txt`
+
+Contains the names of all detectable classes.
+
+---
+
+# Model Information
+
+| Property         | Value     |
+| ---------------- | --------- |
+| Model            | YOLO11n   |
+| Format           | HEF       |
+| Classes          | 50        |
+| Input Resolution | 640 × 640 |
+| Accelerator      | Hailo-8L  |
+
+Compiled model included in this repository:
+
+```text
+models/traffic_yolo11n_50classes_6heads_normalized_logits.hef
+```
+
+---
+
+# Running the Project
+
+Navigate to the project directory:
+
+```bash
+cd /home/pi/hailo_traffic/final_backup
+```
+
+Activate the environment:
+
+```bash
+source ~/hailo_env/bin/activate
+```
+
+Run the application:
+
+```bash
+python3 src/run_youtube_50classes_live_strict_v3.py
+```
+
+When prompted, enter a YouTube video or live stream URL.
+
+---
+
+# Performance
+
+Test platform:
+
+| Component         | Specification |
+| ----------------- | ------------- |
+| Platform          | Raspberry Pi  |
+| AI Accelerator    | Hailo-8L      |
+| Model             | YOLO11n (HEF) |
+| Input Resolution  | 640 × 640     |
+| Number of Classes | 50            |
+
+Current capabilities:
+
+| Feature                       | Status |
+| ----------------------------- | ------ |
+| Traffic Sign Detection        | ✅      |
+| Traffic Light Detection       | ✅      |
+| Pedestrian Crossing Detection | ✅      |
+| YouTube Stream Support        | ✅      |
+| Hailo Hardware Acceleration   | ✅      |
+
+Performance depends on:
+
+* Input video quality
+* Scene complexity
 * Object distance
-* Image resolution
-* Motion blur
-* Sign size
 * Lighting conditions
-* Similarity between traffic sign classes
-* Dataset class imbalance
+* Motion blur
+* Number of visible objects
 
-Small, distant, or blurred traffic signs remain the main challenge.
+The Hailo accelerator enables efficient real-time inference while significantly reducing CPU workload.
 
-## Dataset and Training
+---
 
-The project was developed using a custom traffic dataset containing Turkish traffic signs, traffic lights, pedestrian crossings, and road-related objects.
+# Supported Classes
 
-The dataset was cleaned, merged, and split into training, validation, and test sets. The model was trained at an input resolution of 640 × 640 pixels.
+The model detects 50 traffic-related classes including:
 
-## Future Improvements
+* Speed limit signs
+* Stop sign
+* No entry
+* Parking signs
+* Mandatory direction signs
+* Warning signs
+* Traffic lights
+* Pedestrian crossings
+* Road hazard signs
+* Other Turkish traffic signs
+
+---
+
+# Dataset and Training
+
+The project uses a custom dataset containing Turkish traffic signs, traffic lights, pedestrian crossings, and other road-related objects.
+
+The dataset was cleaned, merged, balanced, and split into training, validation, and test sets before training.
+
+Training resolution:
+
+**640 × 640**
+
+---
+
+# Future Improvements
 
 * Improve traffic sign dataset quality
 * Add more real Turkish road images
-* Balance classes with limited training samples
+* Balance underrepresented classes
 * Reduce false-positive detections
 * Improve small-object detection
-* Add tracking between video frames
-* Add live camera support
-* Create a graphical user interface
-* Add performance and accuracy benchmarks
+* Add object tracking
+* Support live camera input
+* Develop a graphical user interface
+* Publish benchmark results
 
-## 📸 Demo
+---
 
-### Traffic Sign Detection
+# Demo
+
+## Traffic Sign Detection
+
 ![](docs/screenshots/image1.jpeg)
+
 ![](docs/screenshots/image4.jpeg)
 
-### Traffic Light Detection
+## Traffic Light Detection
+
 ![](docs/screenshots/image2.jpeg)
 
-### Crosswalk Detection
+## Pedestrian Crossing Detection
+
 ![](docs/screenshots/image3.jpeg)
 
-## Disclaimer
+---
 
-This project is under development and should not be used as the sole decision-making system in a real vehicle or safety-critical environment.
+# License
+
+This project is licensed under the **MIT License**.
+
+The included model and dataset should be used according to their respective licenses.
+
+---
+
+# Author
+
+**Edanur Erol**
+**Rumeysa Leyla Demir**
+Computer Engineering Student
+
+**AI • Computer Vision • Embedded AI • Hailo**
