@@ -9,7 +9,7 @@ Real-time traffic sign, traffic light, and road-object detection system develope
 
 This project performs real-time object detection on YouTube videos and video streams. The trained YOLO model was converted to the Hailo HEF format and optimized for inference on a Raspberry Pi with a Hailo AI accelerator.
 
-The system is designed to detect Turkish traffic signs, traffic lights, pedestrian crossings, and other traffic-related objects.
+The system is designed to detect Turkish traffic signs, traffic lights, pedestrian crossings, and other traffic-related objects
 
 ## Features
 
